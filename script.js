@@ -13,8 +13,8 @@ const profiles = [
     name: 'Renato Campos',
     role: 'Estudiante de JAVA',
     bio: 'Apasionado por el desarrollo de software, con experiencia en proyectos académicos y personales. Interesado en aprender nuevas tecnologías y mejorar mis habilidades de programación.',
-    image: '', // Ruta de la imagen de perfil
-    banner: '#e07b54', // Color del banner detrás del avatar
+    image: 'CVs/Cv-RenaCampos/src/perfil.jpg', // Ruta de la imagen de perfil
+    banner: '#2563eb', // Color del banner detrás del avatar
     github: '#',
     linkedin: '#',
     cvPath: 'CVs/Cv-RenaCampos/index.html',
@@ -28,17 +28,7 @@ const profiles = [
     github: '#',
     linkedin: '#',
     cvPath: 'CVs/CV-AlumEjemplo/index.html',
-  },
-  {
-    name: 'Alum Ejemplo',
-    role: 'Estudiante de JAVA',
-    bio: 'Descripción breve del alumno. Intereses, stack tecnológico o lo que quiera destacar.',
-    image: 'images/gatoHacker.png', // Ruta de la imagen de perfil
-    banner: '#2563eb', // Color del banner detrás del avatar
-    github: '#',
-    linkedin: '#',
-    cvPath: 'CVs/CV-AlumEjemplo/index.html',
-  },
+  }
 ];
 
 const AVATAR_COLORS = [
