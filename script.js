@@ -60,33 +60,23 @@ const initTheme = () => {
   const savedTheme = localStorage.getItem('theme') || 'dark';
   const htmlElement = document.documentElement;
   const themeToggle = document.querySelector('#theme-toggle');
+  const icon = themeToggle.querySelector('.theme-toggle__icon');
 
-  // Aplicar tema guardado
-  if (savedTheme === 'light') {
-    htmlElement.setAttribute('data-theme', 'light');
-    themeToggle.classList.add('light-mode');
-    themeToggle.querySelector('.theme-toggle__icon').textContent = '☀️';
-  } else {
-    htmlElement.removeAttribute('data-theme');
-    themeToggle.classList.remove('light-mode');
-    themeToggle.querySelector('.theme-toggle__icon').textContent = '🌙';
-  }
+  const applyTheme = (theme) => {
+    const isLight = theme === 'light';
+    htmlElement.setAttribute('data-theme', isLight ? 'light' : '');
+    themeToggle.classList.toggle('light-mode', isLight);
+    themeToggle.setAttribute('aria-checked', String(isLight));
+    icon.textContent = isLight ? '☀️' : '🌙';
+  };
 
-  // Escuchar clics en el toggle
+  applyTheme(savedTheme);
+
   themeToggle.addEventListener('click', () => {
-    const currentTheme = htmlElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-
-    htmlElement.setAttribute('data-theme', newTheme);
+    const isLight = htmlElement.getAttribute('data-theme') === 'light';
+    const newTheme = isLight ? 'dark' : 'light';
     localStorage.setItem('theme', newTheme);
-
-    if (newTheme === 'light') {
-      themeToggle.classList.add('light-mode');
-      themeToggle.querySelector('.theme-toggle__icon').textContent = '☀️';
-    } else {
-      themeToggle.classList.remove('light-mode');
-      themeToggle.querySelector('.theme-toggle__icon').textContent = '🌙';
-    }
+    applyTheme(newTheme);
   });
 };
 
