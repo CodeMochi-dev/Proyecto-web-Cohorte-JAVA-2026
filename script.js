@@ -1,16 +1,16 @@
 const profiles = [
   {
     name: 'Alum Ejemplo',
-    role: 'Desarrollador Web',
+    role: 'Estudiante de JAVA',
     bio: 'Descripción breve del alumno. Intereses, stack tecnológico o lo que quiera destacar.',
     github: '#',
     linkedin: '#',
     cvPath: 'CVs/CV-AlumEjemplo/index.html',
   },
   {
-    name: 'Rena Campos',
-    role: 'Desarrollador Web',
-    bio: 'Descripción breve del alumno. Intereses, stack tecnológico o lo que quiera destacar.',
+    name: 'Renato Campos',
+    role: 'Estudiante de JAVA',
+    bio: 'Apasionado por el desarrollo de software, con experiencia en proyectos académicos y personales. Interesado en aprender nuevas tecnologías y mejorar mis habilidades de programación.',
     github: '#',
     linkedin: '#',
     cvPath: 'CVs/Cv-RenaCampos/index.html',
@@ -27,6 +27,48 @@ const AVATAR_COLORS = [
   '#0891b2',
   '#65a30d',
 ];
+
+/* ==========================================================================
+   THEME TOGGLE
+   ========================================================================== */
+
+const initTheme = () => {
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  const htmlElement = document.documentElement;
+  const themeToggle = document.querySelector('#theme-toggle');
+
+  // Aplicar tema guardado
+  if (savedTheme === 'light') {
+    htmlElement.setAttribute('data-theme', 'light');
+    themeToggle.classList.add('light-mode');
+    themeToggle.querySelector('.theme-toggle__icon').textContent = '☀️';
+  } else {
+    htmlElement.removeAttribute('data-theme');
+    themeToggle.classList.remove('light-mode');
+    themeToggle.querySelector('.theme-toggle__icon').textContent = '🌙';
+  }
+
+  // Escuchar clics en el toggle
+  themeToggle.addEventListener('click', () => {
+    const currentTheme = htmlElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+    htmlElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+
+    if (newTheme === 'light') {
+      themeToggle.classList.add('light-mode');
+      themeToggle.querySelector('.theme-toggle__icon').textContent = '☀️';
+    } else {
+      themeToggle.classList.remove('light-mode');
+      themeToggle.querySelector('.theme-toggle__icon').textContent = '🌙';
+    }
+  });
+};
+
+/* ==========================================================================
+   GALLERY
+   ========================================================================== */
 
 const getInitials = (name) =>
   name
@@ -65,4 +107,7 @@ const renderGallery = () => {
   grid.innerHTML = profiles.map(createCardHTML).join('');
 };
 
-document.addEventListener('DOMContentLoaded', renderGallery);
+document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
+  renderGallery();
+});
